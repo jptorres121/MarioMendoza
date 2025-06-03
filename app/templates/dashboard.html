@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Dashboard de Usuario{% endblock %}
+
+{% block content %}
+<style>
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .libro {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="top-bar">
+  <h2>Bienvenido, {{ usuario.nombre }}</h2>
+  <form method="get" action="/logout">
+    <button type="submit">Cerrar sesión</button>
+  </form>
+</div>
+
+<!-- Buscar libros -->
+<form method="get" style="margin-bottom: 20px;">
+  <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.get('q', '') }}">
+  <button type="submit">Buscar</button>
+</form>
+
+<h3>📖 Mis libros agregados</h3>
+{% if libros %}
+  {% for entrada in libros %}
+    <div class="libro">
+      <strong>{{ entrada.libro.titulo }}</strong><br>
+      <img src="{{ entrada.libro.imagen_url }}" width="100"><br>
+      <p>{{ entrada.libro.sinopsis }}</p>
+      <p><em>Agregado el {{ entrada.fecha_agregado.strftime('%Y-%m-%d') }}</em></p>
+      <form method="post" action="/quitar-libro/{{ entrada.libro.id }}">
+        <button type="submit" style="background-color: red; color: white;">Quitar de mi colección</button>
+      </form>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No has agregado libros aún.</p>
+{% endif %}
+
+<hr>
+
+<h3>📚 Obras disponibles</h3>
+{% if disponibles %}
+  {% for libro in disponibles %}
+    <div class="libro">
+      <strong>{{ libro.titulo }}</strong><br>
+      <img src="{{ libro.imagen_url }}" width="100"><br>
+      <p>{{ libro.sinopsis }}</p>
+      <p><strong>Stock disponible:</strong> {{ libro.stock }}</p>
+      <form method="post" action="/agregar-libro/{{ libro.id }}">
+        <button type="submit">Agregar a mi colección</button>
+      </form>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No hay libros disponibles.</p>
+{% endif %}
+{% endblock %}

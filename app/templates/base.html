@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}App{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  {% if not hide_navbar %}
+  <nav>
+  <a href="/">Inicio</a>
+  {% if request.cookies.get("token") %}
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Cerrar sesión</a>
+  {% else %}
+    <a href="/login">Login</a>
+    <a href="/register">Registro</a>
+  {% endif %}
+</nav>
+
+  {% endif %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

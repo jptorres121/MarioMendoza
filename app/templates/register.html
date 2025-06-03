@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<h2>Registro de Usuario</h2>
+<form method="post" action="/auth/registro">
+    <input type="text" name="nombre" placeholder="Nombre" required><br>
+    <input type="text" name="apellido" placeholder="Apellido" required><br>
+    <input type="text" name="codigo" placeholder="Código de estudiante" required><br>
+    <input type="email" name="email" placeholder="Correo electrónico" required><br>
+    <input type="password" name="password" placeholder="Contraseña" required><br>
+    <button type="submit">Registrarse</button>
+</form>
+
+<p>¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+{% endblock %}

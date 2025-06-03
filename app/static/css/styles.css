@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+nav a {
+    margin-right: 10px;
+}
+input, textarea, button {
+    display: block;
+    margin-top: 10px;
+}

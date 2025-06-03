@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Obras de Mario Mendoza{% endblock %}
+
+{% block content %}
+<h2>Obras disponibles</h2>
+<form method="get" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.get('q', '') }}">
+    <button type="submit">Buscar</button>
+  </form>
+{% for libro in libros %}
+  <div>
+    <h3>{{ libro.titulo }}</h3>
+    <img src="{{ libro.imagen_url }}" width="150"><br>
+    <p>{{ libro.sinopsis }}</p>
+    <p><strong>Ediciones disponibles:</strong> {{ libro.stock }}</p>
+
+  </div>
+{% endfor %}
+{% endblock %}
