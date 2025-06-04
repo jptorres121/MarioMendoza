@@ -262,25 +262,6 @@ def quitar_libro(relacion_id: int, db: Session = Depends(get_db), token: str = C
     db.commit()
     return RedirectResponse(url="/dashboard", status_code=303)
 
-@app.on_event("startup")
-def cargar_libros():
-    db = SessionLocal()
-
-    for libro in libros:
-        existe = db.query(LibroDisponible).filter_by(titulo=libro["titulo"]).first()
-        if not existe:
-            nuevo = LibroDisponible(
-                titulo=libro["titulo"],
-                sinopsis=libro["sinopsis"],
-                imagen_url=f"./app/static/uploads/{libro['imagen']}",
-                stock=10,
-                activo=True
-            )
-            db.add(nuevo)
-
-    db.commit()
-    db.close()
-
 @app.post("/obras/crear")
 async def crear_obra(
     titulo: str = Form(...),
