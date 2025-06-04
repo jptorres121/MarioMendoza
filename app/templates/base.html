@@ -4,23 +4,25 @@
   <meta charset="UTF-8">
   <title>{% block title %}App{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style_admin.css') }}">
 </head>
 <body>
 
 {% if not hide_navbar %}
 <nav>
-  <a href="/" class="logo">LOGO</a>
+  <a class="logo" href="/">LOGO</a>
   <div class="nav-links">
     <a href="/">Inicio</a>
-    {% if request.cookies.get("token") %}
-      <a href="/dashboard">Dashboard</a>
-      <a href="/logout">Cerrar sesión</a>
-    {% else %}
-      <a href="/login">Login</a>
-      <a href="/register">Registro</a>
-    {% endif %}
+    <a href="/login">Login</a>
+    <a href="/register">Registro</a>
+
+    <form method="get" action="/" class="search-form">
+      <input type="text" name="q" placeholder="Buscar obra...">
+      <button type="submit">Buscar</button>
+    </form>
   </div>
 </nav>
+
 {% endif %}
 
 {% block content %}{% endblock %}

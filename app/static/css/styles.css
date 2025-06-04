@@ -1,22 +1,26 @@
-/* Estilo general para el body */
+:root {
+  --color-1: #635985;
+  --color-2: #443C68;
+  --color-3: #393053;
+  --color-4: #18122B;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 15px;
-    background-color: #f4f4f4;
-}
-
-/* Barra de navegación principal */
-nav {
-  background-color: #f2542d; /* Naranja moderno */
-  padding: 10px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 15px;
+  background-color: #f4f4f4;
 }
 
-/* Logo o título a la izquierda */
+/* Navbar con buscador */
+nav {
+  background-color: var(--color-1);
+  padding: 12px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 nav .logo {
   color: white;
   font-weight: bold;
@@ -24,21 +28,40 @@ nav .logo {
   text-decoration: none;
 }
 
-/* Contenedor de enlaces */
 nav .nav-links {
   display: flex;
-  gap: 25px;
+  align-items: center;
+  gap: 20px;
 }
 
-/* Enlaces de navegación */
 nav .nav-links a {
   color: white;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
 nav .nav-links a:hover {
-  color: #ffe3d8; /* Color claro al pasar el mouse */
+  color: #ddd;
+}
+
+/* Buscador en navbar */
+nav .search-form input[type="text"] {
+  padding: 6px;
+  border: none;
+  border-radius: 3px;
+}
+
+nav .search-form button {
+  padding: 6px 10px;
+  margin-left: 5px;
+  background-color: var(--color-3);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+nav .search-form button:hover {
+  background-color: var(--color-4);
 }

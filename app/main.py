@@ -95,6 +95,8 @@ def dashboard(request: Request, db: Session = Depends(get_db), token: str = Cook
             datos.append({"usuario": u, "libros": libros_u})
 
         estado = request.query_params.get("estado")
+        q = request.query_params.get("q", "")
+
         disponibles_query = db.query(models.LibroDisponible)
 
         if estado == "activo":
@@ -102,7 +104,11 @@ def dashboard(request: Request, db: Session = Depends(get_db), token: str = Cook
         elif estado == "inactivo":
             disponibles_query = disponibles_query.filter(models.LibroDisponible.activo == False)
 
+        if q:
+            disponibles_query = disponibles_query.filter(models.LibroDisponible.titulo.ilike(f"%{q}%"))
+
         disponibles = disponibles_query.all()
+
         for libro in disponibles:
             libro.usuarios = (
                 db.query(models.LibroUsuario)

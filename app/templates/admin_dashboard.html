@@ -2,121 +2,94 @@
 {% block title %}Panel de Administrador{% endblock %}
 
 {% block content %}
-<style>
-  .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .tabs button {
-    padding: 10px 20px;
-    background-color: #eee;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  .tabs button.active {
-    background-color: #ddd;
-    font-weight: bold;
-  }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-</style>
+<link rel="stylesheet" href="/static/css/style_admin.css">
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <h2>Panel de Administrador</h2>
-  <form method="get" style="margin-bottom: 20px;">
-    <label>Filtrar por estado:</label>
-    <select name="estado" onchange="this.form.submit()">
-      <option value="">Todos</option>
-      <option value="activo" {% if request.query_params.get('estado') == 'activo' %}selected{% endif %}>Activos</option>
-      <option value="inactivo" {% if request.query_params.get('estado') == 'inactivo' %}selected{% endif %}>Inactivos</option>
-    </select>
+<nav class="admin-navbar">
+  <a href="/" class="logo">Panel Admin</a>
+  <form method="get" action="/dashboard" class="admin-search">
+    <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.q or '' }}">
+    <button type="submit">Buscar</button>
   </form>
-
   <form method="get" action="/logout">
-    <button type="submit">Cerrar sesión</button>
-    <button onclick="irAlHome()">🏠 Ir al Home</button>
+    <button type="submit" class="logout-btn">Cerrar sesión</button>
   </form>
-</div>
+</nav>
 
-<!-- Pestañas -->
+
 <div class="tabs">
   <button onclick="mostrarTab('obras')" class="active">📚 Obras</button>
   <button onclick="mostrarTab('usuarios')">👥 Usuarios</button>
   <button onclick="mostrarTab('agregar')">➕ Agregar obra</button>
 </div>
 
-<!-- TAB: Obras -->
 <div id="obras" class="tab-content active">
-  <input type="text" id="filtroObras" placeholder="Buscar por título..." onkeyup="filtrarObras()">
-  <br><br>
   {% for libro in disponibles %}
-    <div class="libro-item" style="border:1px solid #ccc; padding:10px; margin-bottom:20px;">
-      <strong>{{ libro.titulo }}</strong><br>
-      <img src="{{ libro.imagen_url }}" width="100"><br>
-      <p>{{ libro.sinopsis }}</p>
-      <p><strong>Stock:</strong> {{ libro.stock }}</p>
-      <p><strong>Estado:</strong> {{ "Visible" if libro.activo else "Oculta" }}</p>
+    <div class="libro-card">
+      <div class="libro-info">
+        <img src="{{ libro.imagen_url }}" alt="{{ libro.titulo }}">
+        <h3>{{ libro.titulo }}</h3>
+        <p>{{ libro.sinopsis }}</p>
+      </div>
+      <div class="libro-acciones">
+        <p><strong>Stock:</strong> {{ libro.stock }}</p>
+        <p><strong>Estado:</strong> {{ "Visible" if libro.activo else "Oculta" }}</p>
 
-      <form method="post" action="/obras/{{ libro.id }}/alternar">
-        <button type="submit">{% if libro.activo %}Ocultar{% else %}Mostrar{% endif %}</button>
-      </form>
-
-      <form method="post" action="/obras/{{ libro.id }}/stock">
-        <label>Actualizar stock:</label>
-        <input type="number" name="stock" value="{{ libro.stock }}" required>
-        <button type="submit">Guardar</button>
-      </form>
-
-      <details>
-        <summary>✏️ Editar</summary>
-        <form method="post" action="/obras/{{ libro.id }}/actualizar" enctype="multipart/form-data">
-          <label>Título:</label>
-          <input type="text" name="titulo" value="{{ libro.titulo }}" required><br>
-          <label>Sinopsis:</label>
-          <textarea name="sinopsis" required>{{ libro.sinopsis }}</textarea><br>
-          <label>Imagen:</label>
-          <input type="file" name="imagen" accept="image/*"><br>
-          <label>Stock:</label>
-          <input type="number" name="stock" value="{{ libro.stock }}" required><br>
-          <button type="submit">Actualizar</button>
+        <form method="post" action="/obras/{{ libro.id }}/alternar">
+          <button type="submit" class="secondary-btn">
+            {% if libro.activo %} Ocultar {% else %} Mostrar {% endif %}
+          </button>
         </form>
-      </details>
 
-      <form method="post" action="/obras/{{ libro.id }}/eliminar-definitivo">
-        <button type="submit" style="background-color: red; color: white;">Eliminar definitivamente</button>
-      </form>
+        <details>
+          <summary>✏️ Editar obra</summary>
+          <form method="post" action="/obras/{{ libro.id }}/actualizar" enctype="multipart/form-data" class="form-editar">
+            <label>Título:</label>
+            <input type="text" name="titulo" value="{{ libro.titulo }}" required>
 
-      <h4>Usuarios que agregaron esta obra:</h4>
-      <ul>
-        {% for entrada in libro.usuarios %}
-          <li>{{ entrada.usuario.email }} - {{ entrada.fecha_agregado.strftime('%Y-%m-%d') }}</li>
-        {% else %}
-          <li><em>Nadie ha agregado este libro.</em></li>
-        {% endfor %}
-      </ul>
+            <label>Sinopsis:</label>
+            <textarea name="sinopsis" required>{{ libro.sinopsis }}</textarea>
+
+            <label>Imagen:</label>
+            <input type="file" name="imagen">
+
+            <label>Stock:</label>
+            <input type="number" name="stock" value="{{ libro.stock }}" required>
+
+            <button type="submit">Actualizar</button>
+          </form>
+        </details>
+
+        <form method="post" action="/obras/{{ libro.id }}/eliminar-definitivo">
+          <button type="submit" class="danger">Eliminar definitivamente</button>
+        </form>
+
+        <h4>Usuarios que agregaron esta obra:</h4>
+        <ul>
+          {% for entrada in libro.usuarios %}
+            <li>{{ entrada.usuario.email }} - {{ entrada.fecha_agregado.strftime('%Y-%m-%d') }}</li>
+          {% else %}
+            <li><em>Nadie ha agregado este libro.</em></li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
+  {% else %}
+    <p>No hay libros aún.</p>
   {% endfor %}
 </div>
 
-<!-- TAB: Usuarios -->
 <div id="usuarios" class="tab-content">
+  <h2>Usuarios registrados</h2>
   {% for entrada in datos %}
-    <div style="border:1px solid #ccc; padding:10px; margin-bottom:20px;">
-      <strong>{{ entrada.usuario.nombre }} {{ entrada.usuario.apellido }}</strong> — {{ entrada.usuario.email }}<br>
+    <div class="usuario-card">
+      <p><strong>{{ entrada.usuario.nombre }} {{ entrada.usuario.apellido }}</strong> — {{ entrada.usuario.email }}</p>
       <p><strong>Estado:</strong> {{ "Activo" if entrada.usuario.activo else "Inactivo" }}</p>
-
       <form method="post" action="/usuarios/{{ entrada.usuario.id }}/alternar">
-        <button type="submit">
-          {% if entrada.usuario.activo %}Inactivar{% else %}Activar{% endif %}
-        </button>
+        <button type="submit">{% if entrada.usuario.activo %}Inactivar{% else %}Activar{% endif %}</button>
       </form>
-
       <form method="post" action="/usuarios/{{ entrada.usuario.id }}/eliminar">
-        <button type="submit" style="background-color: red; color: white;">Eliminar usuario</button>
+        <button type="submit" class="danger">Eliminar usuario</button>
       </form>
-
       <h4>Libros agregados:</h4>
       <ul>
         {% for libro in entrada.libros %}
@@ -129,7 +102,6 @@
   {% endfor %}
 </div>
 
-<!-- TAB: Agregar obra -->
 <div id="agregar" class="tab-content">
   <h3>Agregar nueva obra</h3>
   <form method="post" action="/obras/crear" enctype="multipart/form-data">
@@ -150,33 +122,13 @@
 </div>
 
 <script>
-  // Mostrar pestaña seleccionada
-  function mostrarTab(id) {
-    const tabs = document.querySelectorAll('.tab-content');
-    const buttons = document.querySelectorAll('.tabs button');
-
-    tabs.forEach(tab => tab.classList.remove('active'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  // Filtrar obras por título
-  function filtrarObras() {
-    const input = document.getElementById('filtroObras').value.toLowerCase();
-    const libros = document.querySelectorAll('.libro-item');
-
-    libros.forEach(libro => {
-      const titulo = libro.querySelector('strong').textContent.toLowerCase();
-      libro.style.display = titulo.includes(input) ? '' : 'none';
-    });
-  }
-
-  // Redirigir al home
-  function irAlHome(){
-    window.location.href="/";
-  }
+function mostrarTab(id) {
+  const tabs = document.querySelectorAll('.tab-content');
+  const botones = document.querySelectorAll('.tabs button');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  botones.forEach(btn => btn.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
 </script>
-
 {% endblock %}

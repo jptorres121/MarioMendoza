@@ -1,0 +1,313 @@
+/* ===== Paleta ===== */
+/* Principal: #635985, Secundario: #443C68, Tercero: #393053, Fondo oscuro: #18122B */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #18122B;
+}
+
+/* === Navbar del Admin === */
+nav {
+  background-color: #635985;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+nav .logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #dcd6f7;
+}
+
+/* === Menú desplegable para imagen/perfil === */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #443C68;
+  min-width: 160px;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #393053;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* === Barra de búsqueda === */
+nav form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav input[type="text"] {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+nav button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #393053;
+}
+
+/* === Pestañas === */
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 15px 25px;
+}
+
+.tabs button {
+  background-color: #dcd6f7;
+  color: #18122B;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active {
+  background-color: #635985;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px 25px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* === Tarjetas de obras y usuarios === */
+.card {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.card img {
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* === Formularios y botones === */
+form {
+  margin-top: 10px;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #443C68;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #393053;
+}
+
+button.danger {
+  background-color: #d9534f;
+}
+
+button.danger:hover {
+  background-color: #c9302c;
+}
+
+/* === Encabezados === */
+h2, h3, h4 {
+  color: #18122B;
+}
+
+.libro-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.libro-info {
+  flex: 1;
+}
+
+.libro-info img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.libro-info h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+  color: #393053;
+}
+
+.libro-acciones {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.form-editar input,
+.form-editar textarea,
+.form-editar button {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-editar button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-editar button:hover {
+  background-color: #635985;
+}
+
+.admin-navbar {
+  background-color: #635985;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Segoe UI', sans-serif;
+  flex-wrap: wrap;
+}
+
+.admin-navbar .logo {
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.admin-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-search input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  min-width: 200px;
+}
+
+.admin-search button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-search button:hover {
+  background-color: #393053;
+}
+
+.logout-btn {
+  background-color: #18122B;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #393053;
+}
