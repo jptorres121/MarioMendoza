@@ -4,7 +4,6 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_303_SEE_OTHER
-
 from app.database import engine, SessionLocal, get_db
 from app import models, crud, auth
 from app.auth import router as auth_router, SECRET_KEY, ALGORITHM, crear_token
@@ -21,7 +20,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.include_router(auth_router, prefix="/auth")
 os.makedirs("static/uploads", exist_ok=True)
 IMGUR_CLIENT_ID = "6b890e02442e247"

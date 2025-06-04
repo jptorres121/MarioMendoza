@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}App{% endblock %}</title>
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
 </head>
 <body>
 
-  {% if not hide_navbar %}
-  <nav>
-  <a href="/">Inicio</a>
-  {% if request.cookies.get("token") %}
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Cerrar sesión</a>
-  {% else %}
-    <a href="/login">Login</a>
-    <a href="/register">Registro</a>
-  {% endif %}
+{% if not hide_navbar %}
+<nav>
+  <a href="/" class="logo">LOGO</a>
+  <div class="nav-links">
+    <a href="/">Inicio</a>
+    {% if request.cookies.get("token") %}
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout">Cerrar sesión</a>
+    {% else %}
+      <a href="/login">Login</a>
+      <a href="/register">Registro</a>
+    {% endif %}
+  </div>
 </nav>
+{% endif %}
 
-  {% endif %}
-
-  {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 </body>
 </html>

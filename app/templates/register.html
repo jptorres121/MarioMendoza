@@ -2,15 +2,23 @@
 {% block title %}Registro{% endblock %}
 
 {% block content %}
-<h2>Registro de Usuario</h2>
-<form method="post" action="/auth/registro">
-    <input type="text" name="nombre" placeholder="Nombre" required><br>
-    <input type="text" name="apellido" placeholder="Apellido" required><br>
-    <input type="text" name="codigo" placeholder="Código de estudiante" required><br>
-    <input type="email" name="email" placeholder="Correo electrónico" required><br>
-    <input type="password" name="password" placeholder="Contraseña" required><br>
-    <button type="submit">Registrarse</button>
-</form>
+<div class="registro-container">
+    <h2>Formulario Registro</h2>
+    <form method="post" action="/auth/registro">
+        <input type="text" name="nombre" placeholder="Ingrese su Nombre" required>
+        <input type="text" name="apellido" placeholder="Ingrese su Apellido" required>
+        <input type="text" name="codigo" placeholder="Código de estudiante" required>
+        <input type="email" name="email" placeholder="Ingrese su Correo" required>
+        <input type="password" name="password" placeholder="Ingrese su Contraseña" required>
 
-<p>¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+        <div class="terminos">
+            <input type="checkbox" required>
+            <label>Estoy de acuerdo con Términos y Condiciones</label>
+        </div>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <p class="cuenta">¿Ya tengo Cuenta? <a href="/login">Iniciar sesión</a></p>
+</div>
 {% endblock %}
