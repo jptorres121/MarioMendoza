@@ -1,15 +1,24 @@
 {% extends "base.html" %}
-{% block title %}Obras de Mario Mendoza{% endblock %}
+{% block title %}Obras disponibles{% endblock %}
 
 {% block content %}
-<h2>Obras disponibles</h2>
-{% for libro in libros %}
-  <div>
-    <h3>{{ libro.titulo }}</h3>
-    <img src="{{ libro.imagen_url }}" width="150"><br>
-    <p>{{ libro.sinopsis }}</p>
-    <p><strong>Ediciones disponibles:</strong> {{ libro.stock }}</p>
+<link rel="stylesheet" href="/static/css/style_home.css">
 
-  </div>
-{% endfor %}
+<h2>Obras disponibles</h2>
+
+<div class="libros-grid">
+  {% for libro in libros %}
+    <div class="libro-item">
+      <img src="{{ libro.imagen_url }}" alt="{{ libro.titulo }}" class="libro-img">
+      <div class="libro-detalles">
+        <h3>{{ libro.titulo }}</h3>
+        <p class="sinopsis">{{ libro.sinopsis }}</p>
+        <p class="stock">Stock: {{ libro.stock }}</p>
+      </div>
+    </div>
+  {% else %}
+    <p>No hay libros disponibles actualmente.</p>
+  {% endfor %}
+</div>
+
 {% endblock %}
