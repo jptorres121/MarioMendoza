@@ -3,6 +3,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="/static/css/style_admin.css?v=2">
+
 <nav class="admin-navbar">
   <a href="/" class="logo">Panel Admin</a>
   <form method="post" action="/logout">
@@ -10,17 +11,20 @@
   </form>
 </nav>
 
-
+<!-- Pestañas y buscador -->
 <div class="tabs">
-  <button onclick="mostrarTab('obras')" class="active">📚 Obras</button>
-  <button onclick="mostrarTab('usuarios')">👥 Usuarios</button>
-  <button onclick="mostrarTab('agregar')">➕ Agregar obra</button>
-   <form method="get" action="/dashboard" class="search-form">
+  <div class="tab-buttons">
+    <button onclick="mostrarTab('obras')" class="active">📚 Obras</button>
+    <button onclick="mostrarTab('usuarios')">👥 Usuarios</button>
+    <button onclick="mostrarTab('agregar')">➕ Agregar obra</button>
+  </div>
+  <form method="get" action="/dashboard" class="search-form">
     <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.q or '' }}">
     <button type="submit">🔍</button>
   </form>
 </div>
 
+<!-- Tab: Obras -->
 <div id="obras" class="tab-content active">
   {% for libro in disponibles %}
     <div class="libro-card">
@@ -77,6 +81,7 @@
   {% endfor %}
 </div>
 
+<!-- Tab: Usuarios -->
 <div id="usuarios" class="tab-content">
   <h2>Usuarios registrados</h2>
   {% for entrada in datos %}
@@ -110,7 +115,7 @@
   {% endfor %}
 </div>
 
-
+<!-- Tab: Agregar Obra -->
 <div id="agregar" class="tab-content">
   <div class="agregar-container">
     <h3>Agregar Obra</h3>
@@ -132,14 +137,23 @@
   </div>
 </div>
 
+<!-- Script para las pestañas -->
 <script>
 function mostrarTab(id) {
   const tabs = document.querySelectorAll('.tab-content');
   const botones = document.querySelectorAll('.tabs button');
+
   tabs.forEach(tab => tab.classList.remove('active'));
   botones.forEach(btn => btn.classList.remove('active'));
+
   document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+
+  const clickedBtn = Array.from(botones).find(btn =>
+    btn.getAttribute('onclick') === `mostrarTab('${id}')`
+  );
+  if (clickedBtn) {
+    clickedBtn.classList.add('active');
+  }
 }
 </script>
 {% endblock %}

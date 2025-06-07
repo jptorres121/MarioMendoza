@@ -1,11 +1,10 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #442a5b;
+  background: linear-gradient(to bottom, #442a5b 0%, #635985 100%);
   color: #18122B;
 }
 
-/* === Navbar del Admin === */
 nav {
   background-color: #635985;
   color: white;
@@ -38,7 +37,6 @@ nav .logo {
   color: #dcd6f7;
 }
 
-/* === Menú desplegable para imagen/perfil === */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -75,37 +73,19 @@ nav .logo {
   display: block;
 }
 
-/* === Barra de búsqueda === */
-nav form {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-nav input[type="text"] {
-  padding: 6px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-nav button {
-  background-color: #443C68;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-nav button:hover {
-  background-color: #393053;
-}
-
-/* === Pestañas === */
 .tabs {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+  gap: 10px;
+}
+
+.tab-buttons {
+  display: flex;
   gap: 12px;
-  padding: 15px 25px;
+  flex-wrap: wrap;
 }
 
 .tabs button {
@@ -133,23 +113,24 @@ nav button:hover {
   display: block;
 }
 
-/* === Tarjetas de obras y usuarios === */
-.card {
+.card,
+.libro-card,
+.usuario-card {
   background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #d1c4e9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
 }
 
-.card img {
+.card img,
+.libro-info img {
   max-width: 120px;
   height: auto;
-  display: block;
-  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
-/* === Formularios y botones === */
 form {
   margin-top: 10px;
 }
@@ -164,18 +145,24 @@ form select {
   margin-bottom: 10px;
   border: 1px solid #bbb;
   border-radius: 4px;
+  font-size: 14px;
 }
 
-form button {
+form button,
+button,
+input[type="submit"] {
   background-color: #443C68;
   color: white;
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-form button:hover {
+form button:hover,
+button:hover {
   background-color: #393053;
 }
 
@@ -187,128 +174,12 @@ button.danger:hover {
   background-color: #c9302c;
 }
 
-/* === Encabezados === */
 h2 {
   color: #ffffff;
 }
+
 h3, h4 {
   color: #000000;
-}
-.libro-card {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  gap: 20px;
-}
-
-.libro-info {
-  flex: 1;
-}
-
-.libro-info img {
-  width: 150px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.libro-info h3 {
-  margin: 10px 0 5px;
-  font-size: 18px;
-  color: #393053;
-}
-
-.libro-acciones {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-}
-
-.form-editar input,
-.form-editar textarea,
-.form-editar button {
-  display: block;
-  width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  padding: 6px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.form-editar button {
-  background-color: #443C68;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.form-editar button:hover {
-  background-color: #635985;
-}
-
-.admin-navbar {
-  background-color: #635985;
-  color: white;
-  padding: 15px 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: 'Segoe UI', sans-serif;
-  flex-wrap: wrap;
-}
-
-.admin-navbar .logo {
-  font-size: 22px;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
-
-.admin-search {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.admin-search input[type="text"] {
-  padding: 6px 10px;
-  border-radius: 5px;
-  border: none;
-  min-width: 200px;
-}
-
-.admin-search button {
-  background-color: #443C68;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.admin-search button:hover {
-  background-color: #393053;
-}
-
-.logout-btn {
-  background-color: #18122B;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  background-color: #393053;
 }
 
 .usuario-navbar {
@@ -342,37 +213,6 @@ h3, h4 {
   background-color: #443C68;
 }
 
-/* Contenedor de pestañas y búsqueda para usuario y admin */
-.usuario-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  flex-wrap: wrap;
-}
-
-.tab-header {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  background-color: #DCD6F7;
-  color: #18122B;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.tab-btn.active, .tab-btn:hover {
-  background-color: #635985;
-  color: white;
-}
-
 .search-form {
   display: flex;
   gap: 10px;
@@ -395,68 +235,27 @@ h3, h4 {
   cursor: pointer;
   font-size: 16px;
 }
-.usuario-card {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-  flex-wrap: wrap;
-}
-
-.usuario-info {
-  flex: 1;
-  min-width: 250px;
-}
-
-.usuario-libros {
-  flex: 2;
-  min-width: 300px;
-}
 
 .usuario-info h3 {
   margin-top: 0;
   color: #393053;
 }
 
-.usuario-botones {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.usuario-libros ul {
+  padding-left: 20px;
+  margin: 0;
 }
 
-.usuario-botones button {
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: bold;
-}
-
-.usuario-botones .activo {
+.usuario-botones button.activo {
   background-color: #eab308;
   color: #18122B;
   border: none;
 }
 
-.usuario-botones .inactivo {
+.usuario-botones button.inactivo {
   background-color: #10b981;
   color: white;
   border: none;
-}
-
-.usuario-botones .danger {
-  background-color: #dc2626;
-  color: white;
-}
-
-
-#agregar {
-  display: flex;
-  justify-content: center;
-  padding: 30px;
 }
 
 .agregar-container {
@@ -466,6 +265,7 @@ h3, h4 {
   width: 100%;
   max-width: 421px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 .agregar-container h3 {
@@ -510,4 +310,11 @@ h3, h4 {
 
 .form-agregar button:hover {
   background-color: #393053;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #443C68;
 }
