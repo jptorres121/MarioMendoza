@@ -43,24 +43,23 @@
           </button>
         </form>
 
-        <details>
-          <summary>✏️ Editar obra</summary>
-          <form method="post" action="/obras/{{ libro.id }}/actualizar" enctype="multipart/form-data" class="form-editar">
-            <label>Título:</label>
-            <input type="text" name="titulo" value="{{ libro.titulo }}" required>
+       <details>
+         <summary>✏️ Editar obra</summary>
+         <form method="post" action="/obras/{{ libro.id }}/actualizar" enctype="multipart/form-data" class="form-editar">
+           <div class="form-row">
+             <label for="titulo">Título:</label>
+             <input type="text" name="titulo" value="{{ libro.titulo }}" required>
+             <label for="sinopsis">Sinopsis:</label>
+             <textarea name="sinopsis" required>{{ libro.sinopsis }}</textarea>
+             <label for="imagen">Imagen:</label>
+             <input type="file" name="imagen">
+             <label for="stock">Stock:</label>
+             <input type="number" name="stock" value="{{ libro.stock }}" required>
+           </div>
+           <button type="submit">Actualizar</button>
+         </form>
+       </details>
 
-            <label>Sinopsis:</label>
-            <textarea name="sinopsis" required>{{ libro.sinopsis }}</textarea>
-
-            <label>Imagen:</label>
-            <input type="file" name="imagen">
-
-            <label>Stock:</label>
-            <input type="number" name="stock" value="{{ libro.stock }}" required>
-
-            <button type="submit">Actualizar</button>
-          </form>
-        </details>
 
         <form method="post" action="/obras/{{ libro.id }}/eliminar-definitivo">
           <button type="submit" class="danger">Eliminar definitivamente</button>
