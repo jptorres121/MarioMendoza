@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<h2>Iniciar Sesión</h2>
-<form method="post" action="/auth/login">
-    <input type="text" name="email" placeholder="Correo" required>
-    <input type="password" name="password" placeholder="Contraseña" required>
-    <button type="submit">Ingresar</button>
-</form>
-<p>¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
+<div class="main-container">
+  <div class="auth-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" action="/auth/login">
+      <input type="text" name="email" placeholder="Correo" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Ingresar</button>
+    </form>
+    <p class="cuenta">¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
+  </div>
+</div>
 {% endblock %}

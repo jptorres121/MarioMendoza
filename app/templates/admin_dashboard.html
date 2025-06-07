@@ -2,15 +2,10 @@
 {% block title %}Panel de Administrador{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="/static/css/style_admin.css">
-
+<link rel="stylesheet" href="/static/css/style_admin.css?v=2">
 <nav class="admin-navbar">
   <a href="/" class="logo">Panel Admin</a>
-  <form method="get" action="/dashboard" class="admin-search">
-    <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.q or '' }}">
-    <button type="submit">Buscar</button>
-  </form>
-  <form method="get" action="/logout">
+  <form method="post" action="/logout">
     <button type="submit" class="logout-btn">Cerrar sesión</button>
   </form>
 </nav>
@@ -20,6 +15,10 @@
   <button onclick="mostrarTab('obras')" class="active">📚 Obras</button>
   <button onclick="mostrarTab('usuarios')">👥 Usuarios</button>
   <button onclick="mostrarTab('agregar')">➕ Agregar obra</button>
+   <form method="get" action="/dashboard" class="search-form">
+    <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.q or '' }}">
+    <button type="submit">🔍</button>
+  </form>
 </div>
 
 <div id="obras" class="tab-content active">
@@ -81,15 +80,23 @@
 <div id="usuarios" class="tab-content">
   <h2>Usuarios registrados</h2>
   {% for entrada in datos %}
-    <div class="usuario-card">
-      <p><strong>{{ entrada.usuario.nombre }} {{ entrada.usuario.apellido }}</strong> — {{ entrada.usuario.email }}</p>
+  <div class="usuario-card">
+    <div class="usuario-info">
+      <h3>{{ entrada.usuario.nombre }}</h3>
+      <p><strong>Email:</strong> {{ entrada.usuario.email }}</p>
       <p><strong>Estado:</strong> {{ "Activo" if entrada.usuario.activo else "Inactivo" }}</p>
-      <form method="post" action="/usuarios/{{ entrada.usuario.id }}/alternar">
-        <button type="submit">{% if entrada.usuario.activo %}Inactivar{% else %}Activar{% endif %}</button>
-      </form>
-      <form method="post" action="/usuarios/{{ entrada.usuario.id }}/eliminar">
-        <button type="submit" class="danger">Eliminar usuario</button>
-      </form>
+      <div class="usuario-botones">
+        <form method="post" action="/usuarios/{{ entrada.usuario.id }}/alternar">
+          <button type="submit" class="{% if entrada.usuario.activo %}activo{% else %}inactivo{% endif %}">
+            {% if entrada.usuario.activo %}Inactivar{% else %}Activar{% endif %}
+          </button>
+        </form>
+        <form method="post" action="/usuarios/{{ entrada.usuario.id }}/eliminar">
+          <button type="submit" class="danger">Eliminar usuario</button>
+        </form>
+      </div>
+    </div>
+    <div class="usuario-libros">
       <h4>Libros agregados:</h4>
       <ul>
         {% for libro in entrada.libros %}
@@ -99,8 +106,10 @@
         {% endfor %}
       </ul>
     </div>
+  </div>
   {% endfor %}
 </div>
+
 
 <div id="agregar" class="tab-content">
   <h3>Agregar nueva obra</h3>

@@ -1,67 +1,85 @@
-{% extends "base.html" %}
-{% block title %}Dashboard de Usuario{% endblock %}
-
 {% block content %}
-<style>
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .libro {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-</style>
+<link rel="stylesheet" href="/static/css/style_dashboard.css">
 
-<div class="top-bar">
-  <h2>Bienvenido, {{ usuario.nombre }}</h2>
-  <form method="get" action="/logout">
-    <button type="submit">Cerrar sesión</button>
+<!-- Barra de navegación superior -->
+<div class="usuario-navbar">
+  <div class="usuario-navbar-left">
+    <span class="bienvenida">Bienvenido, <strong>{{ usuario.nombre }}</strong></span>
+  </div>
+  <div class="usuario-navbar-right">
+    <form action="/logout" method="post">
+      <button class="btn-logout">Cerrar sesión</button>
+    </form>
+  </div>
+</div>
+
+<!-- Contenedor de pestañas y búsqueda -->
+<div class="usuario-controls">
+  <div class="tab-header">
+    <button class="tab-btn active" onclick="showTab('disponibles')">Obras disponibles</button>
+    <button class="tab-btn " onclick="showTab('agregados')">Libros agregados</button>
+  </div>
+  <form method="get" action="/dashboard" class="search-form">
+    <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.q or '' }}">
+    <button type="submit">🔍</button>
   </form>
 </div>
 
-<!-- Buscar libros -->
-<form method="get" style="margin-bottom: 20px;">
-  <input type="text" name="q" placeholder="Buscar obra..." value="{{ request.query_params.get('q', '') }}">
-  <button type="submit">Buscar</button>
-</form>
+<!-- Pestaña: Obras Disponibles -->
+<div id="disponibles" class="tab-content" style="display:block">
+  <div class="libros-grid">
+    {% for libro in disponibles %}
+      {% set ya_agregado = libros | selectattr("libro_id", "equalto", libro.id) | list | length > 0 %}
+      {% if not ya_agregado %}
+        <div class="libro-item">
+          <img src="{{ libro.imagen_url }}" alt="{{ libro.titulo }}" class="libro-img">
+          <div class="libro-detalles">
+            <h3>{{ libro.titulo }}</h3>
+            <p class="sinopsis">{{ libro.sinopsis }}</p>
+            <p class="stock">Stock: {{ libro.stock }}</p>
+            <form method="post" action="/agregar-libro/{{ libro.id }}">
+              <button>Agregar</button>
+            </form>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    {% if disponibles | rejectattr("id", "in", libros | map(attribute='libro_id') | list) | list | length == 0 %}
+      <p>No hay libros disponibles actualmente.</p>
+    {% endif %}
+  </div>
+</div>
 
-<h3>📖 Mis libros agregados</h3>
-{% if libros %}
-  {% for entrada in libros %}
-    <div class="libro">
-      <strong>{{ entrada.libro.titulo }}</strong><br>
-      <img src="{{ entrada.libro.imagen_url }}" width="100"><br>
-      <p>{{ entrada.libro.sinopsis }}</p>
-      <p><em>Agregado el {{ entrada.fecha_agregado.strftime('%Y-%m-%d') }}</em></p>
-      <form method="post" action="/quitar-libro/{{ entrada.libro.id }}">
-        <button type="submit" style="background-color: red; color: white;">Quitar de mi colección</button>
-      </form>
+<!-- Pestaña: Libros Agregados -->
+<div id="agregados" class="tab-content" style="display:none">
+  {% if libros %}
+    <div class="libros-grid">
+      {% for libro in libros %}
+        <div class="libro-agregado">
+          <img src="{{ libro.libro.imagen_url }}" alt="{{ libro.libro.titulo }}" class="libro-img">
+          <div class="libro-detalles">
+            <h3>{{ libro.libro.titulo }}</h3>
+            <p class="sinopsis">{{ libro.libro.sinopsis }}</p>
+            <p class="stock"><em>Agregado el {{ libro.fecha_agregado }}</em></p>
+            <form method="post" action="/quitar-libro/{{ libro.id }}">
+              <button class="btn-rojo">Quitar de mi colección</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
-{% else %}
-  <p>No has agregado libros aún.</p>
-{% endif %}
+  {% else %}
+    <p>No has agregado ningún libro.</p>
+  {% endif %}
+</div>
 
-<hr>
 
-<h3>📚 Obras disponibles</h3>
-{% if disponibles %}
-  {% for libro in disponibles %}
-    <div class="libro">
-      <strong>{{ libro.titulo }}</strong><br>
-      <img src="{{ libro.imagen_url }}" width="100"><br>
-      <p>{{ libro.sinopsis }}</p>
-      <p><strong>Stock disponible:</strong> {{ libro.stock }}</p>
-      <form method="post" action="/agregar-libro/{{ libro.id }}">
-        <button type="submit">Agregar a mi colección</button>
-      </form>
-    </div>
-  {% endfor %}
-{% else %}
-  <p>No hay libros disponibles.</p>
-{% endif %}
+<script>
+  function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).style.display = 'block';
+    document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
+  }
+</script>
 {% endblock %}

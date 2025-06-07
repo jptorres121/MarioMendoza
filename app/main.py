@@ -191,7 +191,7 @@ def mostrar_login(request: Request):
 def mostrar_registro(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
-@app.get("/logout")
+@app.post("/logout")
 def logout():
     response = RedirectResponse(url="/login", status_code=303)
     response.delete_cookie("token")  # Elimina la cookie del JWT

@@ -1,0 +1,210 @@
+/* Estilo general */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #2c183d;
+  color: #18122B;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra personalizada del usuario y admin */
+.usuario-navbar {
+  background-color: #635985;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.usuario-navbar .bienvenida {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-logout {
+  background-color: #393053;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #443C68;
+}
+
+/* Contenedor de pestañas y búsqueda para usuario y admin */
+.usuario-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  flex-wrap: wrap;
+}
+
+.tab-header {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background-color: #DCD6F7;
+  color: #18122B;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background-color: #635985;
+  color: white;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 0;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-form button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Libros */
+.tab-content {
+  padding: 20px 30px;
+}
+
+.libros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.libro-item, .libro-agregado {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  gap: 20px;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.libro-img, .libro-agregado img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.libro-detalles {
+  flex: 1;
+  text-align: left;
+}
+
+.libro-detalles h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #18122B;
+}
+
+.sinopsis {
+  margin: 10px 0;
+  color: #333;
+}
+
+.stock {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.btn-rojo, .libro-detalles button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-rojo:hover, .libro-detalles button:hover {
+  background-color: #393053;
+}
+
+.usuario-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.usuario-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.usuario-libros {
+  flex: 1;
+  min-width: 200px;
+}
+
+.usuario-botones {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.usuario-botones button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.usuario-botones .activo {
+  background-color: #393053;
+}
+
+.usuario-botones .inactivo {
+  background-color: #00a676;
+}
+
+.usuario-botones .danger {
+  background-color: #d9534f;
+}
+

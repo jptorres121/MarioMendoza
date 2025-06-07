@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #2c183d;
   color: #18122B;
 }
 
@@ -310,4 +310,89 @@ h2, h3, h4 {
 
 .logout-btn:hover {
   background-color: #393053;
+}
+
+.usuario-navbar {
+  background-color: #635985;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.usuario-navbar .bienvenida {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-logout {
+  background-color: #393053;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #443C68;
+}
+
+/* Contenedor de pestañas y búsqueda para usuario y admin */
+.usuario-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  flex-wrap: wrap;
+}
+
+.tab-header {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background-color: #DCD6F7;
+  color: #18122B;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background-color: #635985;
+  color: white;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 0;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-form button {
+  background-color: #443C68;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
 }

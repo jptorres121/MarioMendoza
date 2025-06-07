@@ -1,5 +1,5 @@
 :root {
-  --color-1: #635985;
+  --color-1: #ffffff;
   --color-2: #443C68;
   --color-3: #393053;
   --color-4: #18122B;
@@ -9,7 +9,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 15px;
-  background-color: #f4f4f4;
+  background-color: #2c183d;
 }
 
 /* Navbar con buscador */
@@ -64,4 +64,130 @@ nav .search-form button {
 
 nav .search-form button:hover {
   background-color: var(--color-4);
+}
+
+.registro-container {
+  background-color: var(--color-3);
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.registro-container h2 {
+  color: var(--color-1);
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.registro-container form input[type="text"],
+.registro-container form input[type="email"],
+.registro-container form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--color-2);
+  background-color: white;
+  color: black;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.registro-container form input::placeholder {
+  color: #000000;
+}
+
+.registro-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-2);
+  color: white;
+  border: none;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro-container button:hover {
+  background-color: var(--color-4);
+}
+
+.cuenta {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.cuenta a {
+  color: var(--color-1);
+  text-decoration: none;
+}
+
+.cuenta a:hover {
+  text-decoration: underline;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* Ajusta si la navbar tiene otra altura */
+  padding-top: 20px;
+}
+
+.auth-container {
+  background-color: var(--color-3);
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.auth-container h2 {
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.auth-container form input[type="text"],
+.auth-container form input[type="email"],
+.auth-container form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--color-2);
+  background-color: #ffffff;
+  color: black;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.auth-container form input::placeholder {
+  color: #000000;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-4);
+  color: white;
+  border: none;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container button:hover {
+  background-color: var(--color-2);
 }
