@@ -112,22 +112,24 @@
 
 
 <div id="agregar" class="tab-content">
-  <h3>Agregar nueva obra</h3>
-  <form method="post" action="/obras/crear" enctype="multipart/form-data">
-    <label>Título:</label><br>
-    <input type="text" name="titulo" required><br><br>
+  <div class="agregar-container">
+    <h3>Agregar Obra</h3>
+    <form method="post" action="/obras/crear" enctype="multipart/form-data" class="form-agregar">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Ingresa el título del libro" required>
 
-    <label>Sinopsis:</label><br>
-    <textarea name="sinopsis" required></textarea><br><br>
+      <label for="sinopsis">Sinopsis</label>
+      <textarea id="sinopsis" name="sinopsis" rows="5" placeholder="Breve descripción de la obra" required></textarea>
 
-    <label>Imagen:</label><br>
-    <input type="file" name="imagen" accept="image/*" required><br><br>
+      <label for="imagen">Imagen de portada</label>
+      <input type="file" id="imagen" name="imagen" accept="image/*" required>
 
-    <label>Stock inicial:</label><br>
-    <input type="number" name="stock" value="10" required><br><br>
+      <label for="stock">Stock</label>
+      <input type="number" id="stock" name="stock" value="10" required>
 
-    <button type="submit">Agregar libro</button>
-  </form>
+      <button type="submit">Guardar obra</button>
+    </form>
+  </div>
 </div>
 
 <script>

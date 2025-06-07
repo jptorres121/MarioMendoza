@@ -1,10 +1,7 @@
-/* ===== Paleta ===== */
-/* Principal: #635985, Secundario: #443C68, Tercero: #393053, Fondo oscuro: #18122B */
-
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #2c183d;
+  background-color: #442a5b;
   color: #18122B;
 }
 
@@ -191,10 +188,12 @@ button.danger:hover {
 }
 
 /* === Encabezados === */
-h2, h3, h4 {
-  color: #18122B;
+h2 {
+  color: #ffffff;
 }
-
+h3, h4 {
+  color: #000000;
+}
 .libro-card {
   display: flex;
   justify-content: space-between;
@@ -395,4 +394,120 @@ h2, h3, h4 {
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
+}
+.usuario-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: #f7f7f7;
+  flex-wrap: wrap;
+}
+
+.usuario-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.usuario-libros {
+  flex: 2;
+  min-width: 300px;
+}
+
+.usuario-info h3 {
+  margin-top: 0;
+  color: #393053;
+}
+
+.usuario-botones {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.usuario-botones button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.usuario-botones .activo {
+  background-color: #eab308;
+  color: #18122B;
+  border: none;
+}
+
+.usuario-botones .inactivo {
+  background-color: #10b981;
+  color: white;
+  border: none;
+}
+
+.usuario-botones .danger {
+  background-color: #dc2626;
+  color: white;
+}
+
+
+#agregar {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.agregar-container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 421px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.agregar-container h3 {
+  text-align: center;
+  color: #393053;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.form-agregar {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-agregar label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #18122B;
+}
+
+.form-agregar input,
+.form-agregar textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+}
+
+.form-agregar button {
+  background-color: #443C68;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-agregar button:hover {
+  background-color: #393053;
 }
