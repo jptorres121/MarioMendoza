@@ -16,6 +16,7 @@ h2 {
   flex-wrap: wrap;
   gap: 30px;
   justify-content: flex-start;
+  margin-block-end: 20px;
 }
 
 /* Estilo de cada tarjeta de libro */
