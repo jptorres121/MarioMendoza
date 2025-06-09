@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Diseño{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/style_info.css">
+
+<section class="design-section">
+  <div class="mockup-grid">
+    <div class="mockup-card">
+      <h3>Home</h3>
+      <img src="/static/images/mockup_home.png" alt="Home mockup">
+    </div>
+    <div class="mockup-card">
+      <h3>Dashboard</h3>
+      <img src="/static/images/mockup_dashboard.png" alt="Dashboard mockup">
+    </div>
+    <div class="mockup-card">
+      <h3>Admin</h3>
+      <img src="/static/images/mockup_admin.png" alt="Admin mockup">
+    </div>
+  </div>
+  <div class="diagramas">
+    <h4>Diagramas</h4>
+    <img src="/static/images/diagrama_clases.png" alt="Diagrama de clases">
+    <img src="/static/images/mapa_endpoints.png" alt="Mapa de endpoints">
+  </div>
+</section>
+{% endblock %}

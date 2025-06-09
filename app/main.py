@@ -20,7 +20,6 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.include_router(auth_router, prefix="/auth")
 os.makedirs("static/uploads", exist_ok=True)
 IMGUR_CLIENT_ID = "6b890e02442e247"
@@ -140,32 +139,18 @@ def dashboard(request: Request, db: Session = Depends(get_db), token: str = Cook
         "usuario": usuario
     })
 
+@app.get("/desarrollador", response_class=HTMLResponse)
+def desarrollador(request: Request):
+    return templates.TemplateResponse("desarrollador.html", {"request": request})
 
+@app.get("/planeacion", response_class=HTMLResponse)
+def planeacion(request: Request):
+    return templates.TemplateResponse("planeacion.html", {"request": request})
 
-@app.post("/obras/{id}/eliminar")
-def eliminar_obra(id: int, db: Session = Depends(get_db)):
-    crud.eliminar_obra(db, id)
-    return RedirectResponse(url="/dashboard", status_code=303)
+@app.get("/diseno", response_class=HTMLResponse)
+def diseno(request: Request):
+    return templates.TemplateResponse("diseno.html", {"request": request})
 
-@app.get("/desarrollador")
-def desarrollador():
-    return {"nombre": "Juan Pablo Torres", "código": "67001446", "email": "jptorres46@ucatolica.edu.co"}
-
-@app.get("/planeacion")
-def planeacion():
-    return {
-        "casos_de_uso": "Registrar, consultar, modificar y eliminar obras literarias",
-        "modelo_de_datos": "Obra(id, título, año, sinopsis, activo, imagen_url)",
-        "fuente_datos": "Obras de Mario Mendoza, recolectadas manualmente"
-    }
-
-@app.get("/diseno")
-def diseno():
-    return {
-        "diagrama_clases": "Incluido en la documentación del repositorio",
-        "endpoints": ["/", "/dashboard", "/auth/login", "/obras/crear", "/obras/{id}/eliminar"],
-        "mockups": "Vistas: login, home, dashboard"
-    }
 
 @app.post("/obras/{id}/alternar")
 def alternar_estado_obra(id: int, db: Session = Depends(get_db)):
@@ -270,10 +255,10 @@ async def crear_obra(
     stock: int = Form(...),
     db: Session = Depends(get_db)
 ):
-    os.makedirs("app/static/uploads", exist_ok=True)
+    os.makedirs("static/uploads", exist_ok=True)
     extension = os.path.splitext(imagen.filename)[1]
     nombre_archivo = titulo.replace(" ", "_").lower() + extension
-    ruta_destino = os.path.join("app", "static", "uploads", nombre_archivo)
+    ruta_destino = os.path.join("static", "uploads", nombre_archivo)
 
     with open(ruta_destino, "wb") as buffer:
         shutil.copyfileobj(imagen.file, buffer)
