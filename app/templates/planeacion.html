@@ -3,12 +3,28 @@
 {% block content %}
 <link rel="stylesheet" href="/static/css/style_info.css">
 
-<section class="info-section">
-  <h2>Planeación</h2>
-  <ul>
-    <li><strong>Casos de uso:</strong> Registrar, consultar, modificar y eliminar obras literarias</li>
-    <li><strong>Modelo de datos:</strong> Obra(id, título, año, sinopsis, activo, imagen_url)</li>
-    <li><strong>Fuente de los datos:</strong> Obras de Mario Mendoza, recolectadas manualmente</li>
-  </ul>
+<section class="planeacion-section">
+
+  <div class="seccion">
+    <h2>📌 Casos de Uso</h2>
+    <div class="vista-item">
+      <img src="/static/img/casos_uso.png" alt="Casos de uso">
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h2>🧩 Modelo de Datos</h2>
+    <div class="vista-item">
+      <img src="/static/img/modelo_datos.png" alt="Modelo de datos">
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h2>📚 Fuente de Datos</h2>
+    <div class="fuente-datos-card">
+      <p>Las obras literarias fueron tomadas del autor colombiano <strong>Mario Mendoza</strong>. Esta información fue recolectada manualmente desde fuentes oficiales, incluyendo su sitio web, entrevistas, y plataformas como Goodreads y bibliotecas digitales.</p>
+    </div>
+  </div>
+
 </section>
 {% endblock %}

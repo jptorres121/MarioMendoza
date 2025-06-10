@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Desarrollador{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="/static/css/style_info.css">
 
-<section class="dev-boceto">
-  <div class="dev-card-centered">
-    <img src="/static/img/autor.jpg" alt="Imagen del desarrollador">
-    <div class="dev-datos">
-      <p><strong>Nombre:</strong> Juan Pablo Torres</p>
-      <p><strong>Código:</strong> 67001446</p>
-      <p><strong>Email:</strong> jptorres46@ucatolica.edu.co</p>
+<section class="dev-section">
+  <div class="dev-container">
+
+    <div class="dev-card dev-fixed-width">
+      <img src="/static/img/autor.jpg" alt="Juan Pablo Torres">
+      <div class="dev-info">
+        <h3>Juan Pablo Torres</h3>
+        <p><strong>Código:</strong> 67001446</p>
+        <p><strong>Email:</strong> jptorres46@ucatolica.edu.co</p>
+      </div>
+    </div>
+    <div class="bio-mendoza-card">
+      <img src="/static/img/MarioMendoza.webp" alt="Mario Mendoza">
+      <div class="bio-mendoza-info">
+        <h3>Mario Mendoza</h3>
+        <p><strong>Biografía:</strong> Mario Mendoza es un escritor colombiano nacido en Bogotá. Es conocido por obras como <em>Satanás</em>, <em>Apocalipsis</em>, <em>El viaje del loco Tafur</em>, entre otras. Su narrativa explora los dilemas psicológicos, la oscuridad de la ciudad y lo espiritual, convirtiéndose en uno de los autores más leídos de la literatura contemporánea colombiana.</p>
+      </div>
     </div>
   </div>
 </section>

@@ -167,3 +167,59 @@ h2, h3 {
   object-fit: contain;
   border-radius: 8px;
 }
+.bio-mendoza-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bio-mendoza-card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bio-mendoza-info {
+  flex: 1;
+}
+
+.bio-mendoza-info h3 {
+  margin: 0 0 10px;
+  color: #393053;
+}
+
+.bio-mendoza-info p {
+  font-size: 16px;
+  color: #18122B;
+  line-height: 1.6;
+}
+.planeacion-section {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.vista-item img {
+  width: 100%;
+  max-width: 600px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fuente-datos-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #18122B;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
