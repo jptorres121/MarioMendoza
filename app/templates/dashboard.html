@@ -1,7 +1,6 @@
 {% block content %}
 <link rel="stylesheet" href="/static/css/style_dashboard.css">
 
-<!-- Barra de navegación superior -->
 <div class="usuario-navbar">
   <div class="usuario-navbar-left">
     <span class="bienvenida">Bienvenido, <strong>{{ usuario.nombre }}</strong></span>
@@ -13,7 +12,6 @@
   </div>
 </div>
 
-<!-- Contenedor de pestañas y búsqueda -->
 <div class="usuario-controls">
   <div class="tab-header">
     <button class="tab-btn active" onclick="showTab('disponibles')">Obras disponibles</button>
@@ -25,7 +23,6 @@
   </form>
 </div>
 
-<!-- Pestaña: Obras Disponibles -->
 <div id="disponibles" class="tab-content" style="display:block">
   <div class="libros-grid">
     {% for libro in disponibles %}
@@ -50,7 +47,6 @@
   </div>
 </div>
 
-<!-- Pestaña: Libros Agregados -->
 <div id="agregados" class="tab-content" style="display:none">
   {% if libros %}
     <div class="libros-grid">

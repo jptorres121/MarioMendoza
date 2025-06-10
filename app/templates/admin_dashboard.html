@@ -11,7 +11,6 @@
   </form>
 </nav>
 
-<!-- Pestañas y buscador -->
 <div class="tabs">
   <div class="tab-buttons">
     <button onclick="mostrarTab('obras')" class="active">📚 Obras</button>
@@ -24,7 +23,6 @@
   </form>
 </div>
 
-<!-- Tab: Obras -->
 <div id="obras" class="tab-content active">
   {% for libro in disponibles %}
     <div class="libro-card">
@@ -80,7 +78,6 @@
   {% endfor %}
 </div>
 
-<!-- Tab: Usuarios -->
 <div id="usuarios" class="tab-content">
   <h2>Usuarios registrados</h2>
   {% for entrada in datos %}
@@ -114,7 +111,6 @@
   {% endfor %}
 </div>
 
-<!-- Tab: Agregar Obra -->
 <div id="agregar" class="tab-content">
   <div class="agregar-container">
     <h3>Agregar Obra</h3>
@@ -136,7 +132,6 @@
   </div>
 </div>
 
-<!-- Script para las pestañas -->
 <script>
 function mostrarTab(id) {
   const tabs = document.querySelectorAll('.tab-content');

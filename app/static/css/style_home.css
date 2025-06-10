@@ -10,7 +10,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Grid para alinear horizontalmente los libros */
 .libros-grid {
   display: flex;
   flex-wrap: wrap;
@@ -19,7 +18,6 @@ h2 {
   margin-block-end: 20px;
 }
 
-/* Estilo de cada tarjeta de libro */
 .libro-item {
   display: flex;
   flex-direction: row;
@@ -33,7 +31,6 @@ h2 {
   box-sizing: border-box;
 }
 
-/* Imagen del libro */
 .libro-img {
   width: 120px;
   height: auto;
@@ -42,7 +39,6 @@ h2 {
   margin-right: 16px;
 }
 
-/* Detalles del libro */
 .libro-detalles {
   flex: 1;
   display: flex;

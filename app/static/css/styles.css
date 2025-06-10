@@ -12,7 +12,6 @@ body {
   background-color: #2c183d;
 }
 
-/* Navbar con buscador */
 nav {
   background-color: var(--color-1);
   padding: 12px 30px;
@@ -46,7 +45,6 @@ nav .nav-links a:hover {
   color: #ddd;
 }
 
-/* Buscador en navbar */
 nav .search-form input[type="text"] {
   padding: 6px;
   border: none;
@@ -138,7 +136,7 @@ nav .search-form button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 70px); /* Ajusta si la navbar tiene otra altura */
+  height: calc(100vh - 70px);
   padding-top: 20px;
 }
 

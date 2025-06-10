@@ -47,11 +47,11 @@ def subir_a_imgur(archivo: UploadFile):
 
 def guardar_imagen_upload(file: UploadFile) -> str:
     carpeta_destino = "app/static/uploads"
-    os.makedirs(carpeta_destino, exist_ok=True)  # Crea la carpeta si no existe
+    os.makedirs(carpeta_destino, exist_ok=True)
     ruta_archivo = os.path.join(carpeta_destino, file.filename)
     with open(ruta_archivo, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    return f"/static/uploads/{file.filename}"  # Esto es lo que guardarás en la DB
+    return f"/static/uploads/{file.filename}"
 
 @app.on_event("startup")
 def crear_admin():
@@ -63,7 +63,7 @@ def crear_admin():
             apellido="Principal",
             codigo="0000",
             email="admin@admin.com",
-            password=pwd_context.hash("admin123")  # ← CONTRASEÑA AQUÍ
+            password=pwd_context.hash("admin123")
         )
         db.add(admin)
         db.commit()
@@ -210,7 +210,6 @@ def agregar_libro(libro_id: int, request: Request, db: Session = Depends(get_db)
     if not libro or libro.stock <= 0:
         raise HTTPException(status_code=404, detail="Libro no disponible")
 
-    # Verifica si ya lo tiene
     existente = db.query(models.LibroUsuario).filter_by(usuario_id=usuario.id, libro_id=libro.id).first()
     if existente:
         return RedirectResponse(url="/dashboard", status_code=303)
@@ -239,7 +238,6 @@ def quitar_libro(relacion_id: int, db: Session = Depends(get_db), token: str = C
     if not relacion:
         raise HTTPException(status_code=404, detail="Relación no encontrada")
 
-    # Devolver stock
     libro = db.query(models.LibroDisponible).filter_by(id=relacion.libro_id).first()
     libro.stock += 1
 
@@ -356,7 +354,6 @@ def eliminar_usuario(id: int, db: Session = Depends(get_db)):
     if not usuario:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-    # Borra relaciones con libros si existen
     db.query(models.LibroUsuario).filter_by(usuario_id=id).delete()
 
     db.delete(usuario)
