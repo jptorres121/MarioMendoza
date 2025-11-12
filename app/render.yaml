@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: mario-mendoza-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mendoza-db
+          property: connectionString
+      - key: SECRET_KEY
+        value: superclave123
+      - key: ALGORITHM
+        value: HS256
+      - key: IMGUR_CLIENT_ID
+        value: 6b890e02442e247
+databases:
+  - name: obras.db
