@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin</title>
+  <link rel="stylesheet" href="/static/movil/style_movil.css">
+</head>
+<body>
+  <header>Panel de Administrador</header>
+  <div class="container">
+
+    <h2>Agregar nueva obra</h2>
+    <form>
+      <input type="text" placeholder="Título" required>
+      <textarea placeholder="Sinopsis..." rows="4"></textarea>
+      <input type="file" accept="image/*">
+      <input type="number" placeholder="Stock inicial" value="10">
+      <button>Guardar</button>
+    </form>
+
+    <hr style="margin:20px 0; border-color:#635985;">
+
+    <h2>Usuarios registrados</h2>
+    <div class="card">
+      <h3>Usuario: lector@correo.com</h3>
+      <p>Estado: Activo</p>
+      <button>Inactivar</button>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <a href="/movil/home.html">🏠</a>
+    <a href="/movil/mis_obras.html">📚</a>
+    <a href="/movil/admin.html" class="active">⚙️</a>
+  </div>
+</body>
+</html>
