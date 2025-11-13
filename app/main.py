@@ -387,3 +387,26 @@ def actualizar_obra(
 
     db.commit()
     return RedirectResponse(url="/dashboard", status_code=303)
+
+@app.get("/movil/home", response_class=HTMLResponse)
+def movil_home(request: Request, db: Session = Depends(get_db)):
+    # Trae las obras visibles (las que se muestran en el home normal)
+    obras = db.query(Obra).filter(Obra.activo == True).all()
+    return templates.TemplateResponse("movil/home.html", {"request": request, "obras": obras})
+
+
+@app.get("/movil/home", response_class=HTMLResponse)
+def movil_home(request: Request):
+    return templates.TemplateResponse("movil/home.html", {"request": request})
+
+@app.get("/movil/mis-obras", response_class=HTMLResponse)
+def movil_mis_obras(request: Request):
+    return templates.TemplateResponse("movil/mis_obras.html", {"request": request})
+
+@app.get("/movil/login", response_class=HTMLResponse)
+def movil_login(request: Request):
+    return templates.TemplateResponse("movil/login.html", {"request": request})
+
+@app.get("/movil/admin", response_class=HTMLResponse)
+def movil_admin(request: Request):
+    return templates.TemplateResponse("movil/admin.html", {"request": request})

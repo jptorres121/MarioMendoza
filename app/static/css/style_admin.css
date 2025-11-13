@@ -339,3 +339,23 @@ details summary {
   font-size: 14px;
   background-color: #f9f9f9;
 }
+
+.movil-access {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn-movil {
+  background-color: #635985;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-movil:hover {
+  background-color: #443C68;
+}

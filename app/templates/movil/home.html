@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Obras disponibles</title>
-  <link rel="stylesheet" href="/static/movil/style_movil.css">
-</head>
-<body>
-  <header>Obras disponibles</header>
-  <div class="container">
-    <div class="card">
-      <img src="/static/uploads/satanas.jpg" alt="Satanás">
-      <h2>Satanás</h2>
-      <p>Basada en hechos reales, narra el descenso de un exmilitar en la locura y la violencia.</p>
-      <button>Agregar a mi colección</button>
-    </div>
+{% extends "movil/base_movil.html" %}
+{% block title %}Inicio{% endblock %}
 
-    <div class="card">
-      <img src="/static/uploads/apocalipsis.jpg" alt="Apocalipsis">
-      <h2>Apocalipsis</h2>
-      <p>Un periodista descubre una red global que lleva al fin del mundo tal como lo conocemos.</p>
-      <button>Agregar a mi colección</button>
-    </div>
-  </div>
+{% block content %}
+<h1>Bienvenido a la app móvil 📱</h1>
+<p>Aquí puedes explorar las obras disponibles.</p>
 
-  <div class="navbar">
-    <a href="/movil/home.html" class="active">🏠</a>
-    <a href="/movil/mis_obras.html">📚</a>
-    <a href="/movil/admin.html">⚙️</a>
+<div class="obras-grid">
+  {% for obra in obras %}
+  <div class="obra-card">
+    <img src="{{ obra.imagen_url }}" alt="{{ obra.titulo }}">
+    <h3>{{ obra.titulo }}</h3>
+    <p>{{ obra.sinopsis[:100] }}...</p>
   </div>
-</body>
-</html>
+  {% else %}
+  <p>No hay obras disponibles aún.</p>
+  {% endfor %}
+</div>
+{% endblock %}

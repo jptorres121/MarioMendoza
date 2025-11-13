@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}App Móvil{% endblock %}</title>
+    <link rel="stylesheet" href="/static/movil/style_movil.css">
+</head>
+<body>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Barra inferior de navegación -->
+    <nav class="mobile-nav">
+        <a href="/movil/home" class="{% if request.url.path == '/movil/home' %}active{% endif %}">🏠</a>
+        <a href="/movil/mis-obras" class="{% if request.url.path == '/movil/mis-obras' %}active{% endif %}">📚</a>
+        <a href="/movil/login" class="{% if request.url.path == '/movil/login' %}active{% endif %}">👤</a>
+        <a href="/movil/admin" class="{% if request.url.path == '/movil/admin' %}active{% endif %}">⚙️</a>
+    </nav>
+</body>
+</html>
